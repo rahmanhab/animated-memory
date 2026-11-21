@@ -1,202 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Agency Books</title>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#1f5f4a">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Books">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
-<link rel="icon" href="icons/icon-192.png">
+<html lang="en"><head>
+<meta charset="utf-8"><title>Agency Books</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1f5f4a">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Books"><link rel="apple-touch-icon" href="icons/icon-192.png"><link rel="icon" href="icons/icon-192.png">
 <style>
-input,select,button{font-size:16px}
-.mo{display:none}
-@media(max-width:700px){.w{padding:14px 12px 80px}.hm{display:none}.mo{display:block}table{min-width:0}.v{font-size:19px}button{min-height:42px}.bar button{flex:1}form{grid-template-columns:1fr 1fr}#f>div:nth-child(3),#f>div:nth-child(5),#f>div:last-child{grid-column:1/-1}}
-
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
---bg:#f6f5f1;--card:#fff;--tx:#1d1d1b;--mut:#6b6a64;--bd:#e2e0d8;--ac:#1f5f4a;--in:#1f7a4d;--out:#b3402a;--pend:#b7791f}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#151514;--card:#201f1d;--tx:#efeee9;--mut:#9a988f;--bd:#34332f;--ac:#5cc0a0;--in:#5cc08a;--out:#e8836d;--pend:#e0b04f}}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
-.w{max-width:1000px;margin:0 auto;padding:20px 16px 60px}
-h1{font-size:22px;margin:0}h2{font-size:16px;margin:0 0 12px}
-.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.sub{color:var(--mut);font-size:13px}
-.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
-.c{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px}
-.k{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
-.v{font-size:22px;font-weight:650;margin-top:4px}
-.in{color:var(--in)}.out{color:var(--out)}.pend{color:var(--pend)}
-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;align-items:end}
-label{display:block;font-size:12px;color:var(--mut);margin-bottom:3px}
-input,select{width:100%;padding:8px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
-button{padding:9px 14px;border:0;border-radius:8px;background:var(--ac);color:#fff;font:inherit;font-weight:600;cursor:pointer}
-button.s{background:transparent;color:var(--tx);border:1px solid var(--bd);font-weight:500}
-button.x{background:none;color:var(--out);padding:2px 6px;font-size:18px}
-.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.bar>*{width:auto}
-.tw{overflow-x:auto}
-table{width:100%;border-collapse:collapse;min-width:640px}
-th{text-align:left;color:var(--mut);font-size:12px;font-weight:500;padding:8px;border-bottom:1px solid var(--bd)}
-td{padding:9px 8px;border-bottom:1px solid var(--bd);vertical-align:middle}
-td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
-.tag{font-size:11px;padding:2px 8px;border-radius:99px;border:1px solid var(--bd);cursor:pointer}
-.m{margin:14px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:700px){.m{grid-template-columns:1fr}}
-.row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--bd);font-size:14px}
-.row:last-child{border:0}
-#msg{color:var(--mut);padding:30px;text-align:center}
-#lg{position:fixed;inset:0;background:var(--bg);z-index:50;display:none;align-items:center;justify-content:center;padding:20px}#lg .c{width:100%;max-width:360px}#lg input{margin-bottom:10px}#lg button{width:100%}#lgm{color:var(--out);font-size:13px;margin-top:10px;min-height:18px}
-</style>
-</head>
-<body>
-<div id="lg"><div class="c"><h1>Agency Books</h1><div class="sub" style="margin:4px 0 14px">Sign in with your partner account</div>
-<input id="em" type="email" placeholder="Email" autocomplete="username"><input id="pw" type="password" placeholder="Password" autocomplete="current-password">
-<button id="li">Sign in</button><div id="lgm"></div></div></div>
-<div class="w">
-  <div class="top">
-    <div><h1>Agency Books</h1><div class="sub" id="who"></div></div>
-    <div class="bar" style="margin:0"><button class="s" id="nm">Set my name</button><button class="s" id="imp">Import backup</button><button class="s" id="bak">Save backup</button><button class="s" id="so" style="display:none">Sign out</button><button class="s" id="csv">Export CSV</button><input type="file" id="file" accept=".json" style="display:none"></div>
-  </div>
-
-  <div class="g">
-    <div class="c"><div class="k">Income (paid)</div><div class="v in" id="kIn">–</div></div>
-    <div class="c"><div class="k">Expenses (paid)</div><div class="v out" id="kOut">–</div></div>
-    <div class="c"><div class="k">Net profit</div><div class="v" id="kNet">–</div></div>
-    <div class="c"><div class="k">Receivable (unpaid)</div><div class="v pend" id="kRec">–</div></div>
-    <div class="c"><div class="k">Payable (unpaid)</div><div class="v pend" id="kPay">–</div></div>
-  </div>
-
-  <div class="c" style="margin-bottom:16px">
-    <h2>Add entry</h2>
-    <form id="f">
-      <div><label>Type</label><select id="type"><option value="income">Income / Invoice</option><option value="expense">Expense</option></select></div>
-      <div><label>Date</label><input type="date" id="date" required></div>
-      <div><label>Client / Vendor</label><input id="party" placeholder="e.g. Acme Pvt Ltd" required></div>
-      <div><label>Category</label><select id="cat"></select></div>
-      <div><label>Description</label><input id="desc" placeholder="Optional"></div>
-      <div><label>Amount (₹)</label><input type="number" id="amt" min="0" step="0.01" required></div>
-      <div><label>Status</label><select id="status"><option value="paid">Paid</option><option value="unpaid">Unpaid</option></select></div>
-      <div><button type="submit">Add</button></div>
-    </form>
-  </div>
-
-  <div class="c">
-    <h2>Transactions</h2>
-    <div class="bar">
-      <select id="fType"><option value="">All types</option><option value="income">Income</option><option value="expense">Expense</option></select>
-      <select id="fStatus"><option value="">Any status</option><option value="paid">Paid</option><option value="unpaid">Unpaid</option></select>
-      <input id="fMonth" type="month" title="Month">
-      <input id="fQ" placeholder="Search…" style="min-width:160px">
-    </div>
-    <div class="tw"><table>
-      <thead><tr><th>Date</th><th>Client / Vendor</th><th class="hm">Category</th><th class="hm">Added by</th><th>Status</th><th class="n">Amount</th><th></th></tr></thead>
-      <tbody id="rows"></tbody>
-    </table></div>
-    <div id="msg">Loading…</div>
-  </div>
-
-  <div class="m">
-    <div class="c"><h2>Income by client</h2><div id="byClient"></div></div>
-    <div class="c"><h2>Expenses by category</h2><div id="byCat"></div></div>
-  </div>
-</div>
-
-<script>
-const CATS={income:["Retainer","Project","Ad management","SEO","Content / Design","Other income"],
-  expense:["Ad spend (pass-through)","Salaries","Freelancers","Software / Tools","Rent / Utilities","Marketing","Taxes / GST","Other"]};
-const $=id=>document.getElementById(id);
-const fmt=n=>"₹"+Number(n||0).toLocaleString("en-IN",{maximumFractionDigits:2});
-const KEY="agencyBooks.v1",NK="agencyBooks.name";
-let tx=[];try{tx=JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){}
-let myName="";try{myName=localStorage.getItem(NK)||""}catch(e){}
-let col=null;
-function save(){if(!col){try{localStorage.setItem(KEY,JSON.stringify(tx))}catch(e){alert("Could not save in this browser.")}}render()}
-async function put(x){if(col){try{await col.doc(x.id).set(x)}catch(e){alert("Could not save to cloud: "+(e.message||e.code))}}else{tx.push(x);save()}}
-async function del(id){if(col){try{await col.doc(id).delete()}catch(e){alert("Not allowed: "+(e.message||e.code))}}else{tx=tx.filter(x=>x.id!==id);save()}}
-function who(){$("who").textContent=(col?"☁ Shared cloud ledger · live for everyone with access · ":"Offline copy (not shared) · ")+(myName?"working as "+myName:"click “Set my name”")}
-$("nm").onclick=()=>{const n=prompt("Your name (e.g. Priya):",myName);if(n!==null){myName=n.trim();try{localStorage.setItem(NK,myName)}catch(e){}who()}};
-function fillCats(){$("cat").innerHTML=CATS[$("type").value].map(c=>`<option>${c}</option>`).join("")}
-$("type").onchange=fillCats;fillCats();
-$("date").value=new Date().toISOString().slice(0,10);
-function esc(s){const d=document.createElement("div");d.textContent=s??"";return d.innerHTML}
-function filtered(){
-  const t=$("fType").value,s=$("fStatus").value,m=$("fMonth").value,q=$("fQ").value.toLowerCase();
-  return tx.filter(x=>(!t||x.type===t)&&(!s||x.status===s)&&(!m||x.date.startsWith(m))&&
-    (!q||(x.party+" "+x.cat+" "+x.desc).toLowerCase().includes(q))).sort((a,b)=>b.date.localeCompare(a.date)||(b.created||0)-(a.created||0));
-}
-function sum(l,type,st){return l.filter(x=>x.type===type&&(!st||x.status===st)).reduce((a,x)=>a+x.amount,0)}
-function group(l,k){const o={};l.forEach(x=>o[x[k]]=(o[x[k]]||0)+x.amount);return Object.entries(o).sort((a,b)=>b[1]-a[1])}
-function render(){
-  const list=filtered();
-  const inc=sum(list,"income","paid"),exp=sum(list,"expense","paid");
-  $("kIn").textContent=fmt(inc);$("kOut").textContent=fmt(exp);
-  const net=inc-exp;$("kNet").textContent=fmt(net);$("kNet").className="v "+(net>=0?"in":"out");
-  $("kRec").textContent=fmt(sum(list,"income","unpaid"));$("kPay").textContent=fmt(sum(list,"expense","unpaid"));
-  $("rows").innerHTML=list.map(x=>`<tr><td>${esc(x.date)}</td>
-    <td>${esc(x.party)}${x.desc?`<div class="sub">${esc(x.desc)}</div>`:""}<div class="sub mo">${esc(x.cat)}${x.by?" · "+esc(x.by):""}</div></td><td class="hm">${esc(x.cat)}</td>
-    <td class="sub hm">${esc(x.by||"–")}</td>
-    <td><span class="tag ${x.status==="paid"?"in":"pend"}" data-t="${x.id}">${x.status}</span></td>
-    <td class="n ${x.type==="income"?"in":"out"}">${x.type==="income"?"+":"−"}${fmt(x.amount)}</td>
-    <td><button class="x" data-d="${x.id}" title="Delete">×</button></td></tr>`).join("");
-  $("msg").style.display=list.length?"none":"block";
-  $("msg").textContent=tx.length?"No entries match the filters.":"No entries yet — add your first one above.";
-  const cl=group(list.filter(x=>x.type==="income"&&x.status==="paid"),"party");
-  $("byClient").innerHTML=cl.length?cl.map(([k,v])=>`<div class="row"><span>${esc(k)}</span><b>${fmt(v)}</b></div>`).join(""):'<div class="sub">No paid income yet</div>';
-  const ca=group(list.filter(x=>x.type==="expense"&&x.status==="paid"),"cat");
-  $("byCat").innerHTML=ca.length?ca.map(([k,v])=>`<div class="row"><span>${esc(k)}</span><b>${fmt(v)}</b></div>`).join(""):'<div class="sub">No paid expenses yet</div>';
-}
-["fType","fStatus","fMonth","fQ"].forEach(id=>$(id).oninput=render);
-$("f").onsubmit=e=>{e.preventDefault();
-  put({id:"t"+Date.now().toString(36)+Math.random().toString(36).slice(2,6),type:$("type").value,date:$("date").value,
-    party:$("party").value.trim(),cat:$("cat").value,desc:$("desc").value.trim(),amount:parseFloat($("amt").value),
-    status:$("status").value,by:myName,created:Date.now()});
-  $("party").value="";$("desc").value="";$("amt").value=""};
-$("rows").onclick=e=>{const t=e.target.dataset;
-  if(t.d&&confirm("Delete this entry?"))del(t.d);
-  if(t.t){const x=tx.find(y=>y.id===t.t);const ns=x.status==="paid"?"unpaid":"paid";if(col)col.doc(x.id).update({status:ns}).catch(()=>alert("Not allowed to edit."));else{x.status=ns;save()}}};
-function dl(name,text,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();a.remove()}
-$("csv").onclick=()=>{const q=s=>'"'+String(s??"").replace(/"/g,'""')+'"';
-  dl("agency-books.csv",["Date,Type,Client/Vendor,Category,Description,Amount,Status,Added by"].concat(filtered().map(x=>[x.date,x.type,q(x.party),q(x.cat),q(x.desc),x.amount,x.status,q(x.by)].join(","))).join("\n"),"text/csv")};
-$("bak").onclick=()=>dl("agency-books-backup-"+new Date().toISOString().slice(0,10)+".json",JSON.stringify(tx),"application/json");
-$("imp").onclick=()=>$("file").click();
-$("file").onchange=async e=>{const f=e.target.files[0];if(!f)return;
-  try{const inc=JSON.parse(await f.text());const have=new Set(tx.map(x=>x.id));let n=0;
-    inc.forEach(x=>{if(x&&x.id&&!have.has(x.id)&&x.date&&x.amount>=0){put(x);n++}});
-    save();alert(n+" new entries merged.")}catch(err){alert("That file isn't a valid backup.")}
-  e.target.value=""};
-window.cloudOn=a=>{col=a;who()};
-window.cloudData=a=>{tx=a;render()};
-window.cloudOff=()=>{col=null;try{tx=JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){tx=[]}who();render()};
-window.setMe=n=>{if(!myName){myName=n;who()}};
-who();render();
-if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
-</script>
+:root{--bg:#f4f3ee;--cd:#fff;--tx:#1b1b19;--mu:#6c6b65;--bd:#e4e2da;--ac:#1f5f4a;--in:#1c7a4b;--out:#b43e28;--pe:#b7791f;--r:16px}
+@media(prefers-color-scheme:dark){:root{color-scheme:dark;--bg:#121211;--cd:#1e1d1b;--tx:#efeee9;--mu:#9b998f;--bd:#33322e;--ac:#5cc0a0;--in:#5cc08a;--out:#ec8a73;--pe:#e0b04f}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+.hd{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px;background:var(--bg);border-bottom:1px solid var(--bd)}
+.hd b{font-size:19px}.sub{color:var(--mu);font-size:13px}
+main{max-width:640px;margin:0 auto;padding:14px 14px calc(150px + env(safe-area-inset-bottom,0px))}
+.cd{background:var(--cd);border:1px solid var(--bd);border-radius:var(--r);padding:14px 16px;margin-bottom:12px}
+.big{font-size:32px;font-weight:700;margin:2px 0}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}.g2 .cd{margin:0}
+.k{color:var(--mu);font-size:12px;text-transform:uppercase;letter-spacing:.04em}.v{font-size:20px;font-weight:650}
+.in{color:var(--in)}.out{color:var(--out)}.pe{color:var(--pe)}
+h3{margin:18px 2px 8px;font-size:14px;color:var(--mu);text-transform:uppercase;letter-spacing:.04em}
+.row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--bd)}.row:last-child{border:0}
+input,select,textarea{width:100%;font:inherit;font-size:16px;padding:12px;border:1px solid var(--bd);border-radius:12px;background:var(--bg);color:var(--tx)}
+button{font:inherit;font-size:16px;border:0;border-radius:12px;padding:13px 16px;background:var(--ac);color:#fff;font-weight:600;min-height:48px}
+button.s{background:var(--cd);color:var(--tx);border:1px solid var(--bd)}button.d{background:var(--out)}
+.ib{background:var(--cd);color:var(--tx);border:1px solid var(--bd);min-height:40px;padding:6px 14px;font-size:20px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px}.chips button{min-height:38px;padding:6px 14px;white-space:nowrap;background:var(--cd);color:var(--tx);border:1px solid var(--bd);font-weight:500}.chips button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.it{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 14px;cursor:pointer}
+.it .a{font-weight:650;white-space:nowrap}.tg{display:inline-block;font-size:11px;padding:1px 8px;border-radius:99px;border:1px solid currentColor;margin-left:6px}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:6;display:flex;background:var(--cd);border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav button{flex:1;background:none;color:var(--mu);border-radius:0;min-height:58px;font-size:12px;font-weight:500}nav button.on{color:var(--ac)}nav i{display:block;font-style:normal;font-size:20px}
+#fab{position:fixed;right:18px;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:7;width:60px;height:60px;border-radius:30px;font-size:32px;padding:0;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.sheet{position:fixed;inset:0;z-index:20;display:none}.sheet.on{display:block}.bk{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+.pn{position:absolute;left:0;right:0;bottom:0;max-height:92%;overflow:auto;background:var(--cd);border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));max-width:640px;margin:0 auto}
+.pn h2{margin:0 0 12px;font-size:19px}.pn label{display:block;font-size:12px;color:var(--mu);margin:10px 0 4px}.pn button{width:100%;margin-top:10px}
+.seg{display:flex;gap:8px}.seg button{margin:0;background:var(--bg);color:var(--tx);border:1px solid var(--bd)}.seg button.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.lg{padding:10px 0;border-bottom:1px solid var(--bd);font-size:15px}.lg:last-child{border:0}
+.em{color:var(--mu);text-align:center;padding:30px 10px}
+</style></head><body>
+<div class="hd"><div><b>Agency Books</b><div class="sub" id="me"></div></div><button class="ib" id="mb" aria-label="Menu">⋯</button></div>
+<main id="v1"></main><main id="v2" hidden></main><main id="v3" hidden></main>
+<button id="fab" aria-label="Add entry">+</button>
+<nav><button data-t="1" class="on"><i>◔</i>Home</button><button data-t="2"><i>☰</i>Entries</button><button data-t="3"><i>🕘</i>Activity</button></nav>
+<div class="sheet" id="sh"><div class="bk" id="bk"></div><div class="pn" id="pn"></div></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script type="module">
 import {SUPABASE_URL,SUPABASE_KEY} from "./supabase-config.js";
-const g=id=>document.getElementById(id),CK="agencyBooks.cloudcache";
-const toRow=x=>({id:x.id,type:x.type,date:x.date,party:x.party,cat:x.cat,descr:x.desc||"",amount:x.amount,status:x.status,by_name:x.by||"",created:x.created||Date.now()});
-const fromRow=r=>({id:r.id,type:r.type,date:r.date,party:r.party,cat:r.cat,desc:r.descr||"",amount:Number(r.amount),status:r.status,by:r.by_name||"",created:Number(r.created)});
-if(!window.supabase){g("who").textContent="Could not load the sync library. Check your internet."}
-else{
- const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
- async function refresh(){
-  const {data,error}=await sb.from("transactions").select("*");
-  if(error){g("who").textContent="Offline or can't read ledger: "+error.message;
-   try{cloudData(JSON.parse(localStorage.getItem(CK)||"[]"))}catch(e){}return}
-  const a=data.map(fromRow);try{localStorage.setItem(CK,JSON.stringify(a))}catch(e){}cloudData(a)}
- const wrap=async p=>{const {error}=await p;if(error)alert("Could not save: "+error.message);await refresh()};
- cloudOn({doc:id=>({set:x=>wrap(sb.from("transactions").upsert(toRow(x))),update:x=>wrap(sb.from("transactions").update(x).eq("id",id)),delete:()=>wrap(sb.from("transactions").delete().eq("id",id))})});
- refresh();
- sb.channel("tx-live").on("postgres_changes",{event:"*",schema:"public",table:"transactions"},refresh).subscribe();
- document.addEventListener("visibilitychange",()=>{if(!document.hidden)refresh()});
- try{if(!localStorage.getItem("agencyBooks.name"))setTimeout(()=>g("nm").click(),400)}catch(e){}
-}
-</script>
-</body>
-</html>
+const $=id=>document.getElementById(id);
+const fmt=n=>"₹"+Number(n||0).toLocaleString("en-IN",{maximumFractionDigits:2});
+const esc=s=>{const d=document.createElement("div");d.textContent=s??"";return d.innerHTML};
+const ls={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}}};
+const CATS={income:["Retainer","Project","Ad management","SEO","Content / Design","Other income"],expense:["Ad spend (pass-through)","Salaries","Freelancers","Software / Tools","Rent / Utilities","Marketing","Taxes / GST","Other"]};
+let sb=null,all=[],acts=[],name=ls.get("ab.name")||"",tab=1,chip="all",q="",per="all",status="";
+const fromRow=r=>({id:r.id,type:r.type,date:r.date,party:r.party,cat:r.cat,desc:r.descr||"",amount:Number(r.amount),status:r.status,by:r.by_name||"",created:Number(r.created),delAt:r.deleted_at?Number(r.deleted_at):null,delBy:r.deleted_by||""});
+const when=t=>new Date(Number(t)).toLocaleString("en-IN",{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"});
+const live=()=>all.filter(x=>!x.delAt);
+const sum=(l,t,s)=>l.filter(x=>x.type===t&&(!s||x.status===s)).reduce((a,x)=>a+x.amount,0);
+const grp=(l,k)=>Object.entries(l.reduce((o,x)=>(o[x[k]]=(o[x[k]]||0)+x.amount,o),{})).sort((a,b)=>b[1]-a[1]);
+const mk=(d=new Date())=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0");
+
+/* sheet helpers */
+function sheet(html){$("pn").innerHTML=html;$("sh").classList.add("on")}
+function closeSheet(){$("sh").classList.remove("on")}
+$("bk").onclick=closeSheet;
+function askName(){return new Promise(res=>{
+  sheet(`<h2>Your name</h2><div class="sub">Shown next to everything you add or delete.</div><label>Name</label><input id="nn" value="${esc(name)}" placeholder="e.g. Priya" autocomplete="given-name"><button id="ns">Save</button>`);
+  $("ns").onclick=()=>{const v=$("nn").value.trim();if(!v)return;name=v;ls.set("ab.name",v);closeSheet();head();res(true)};
+  $("bk").onclick=()=>{closeSheet();res(!!name);$("bk").onclick=closeSheet}})}
+async function needName(){return name?true:askName()}
+function head(){$("me").textContent=name?"Signed in as "+name:"Tap ⋯ to set your name"}
+
+/* data */
+async function refresh(){
+  if(!sb)return;
+  const [a,b]=await Promise.all([sb.from("transactions").select("*"),sb.from("activity_log").select("*").order("at",{ascending:false}).limit(150)]);
+  if(a.error||b.error){$("me").textContent="Offline – showing last saved data";try{all=JSON.parse(ls.get("ab.c1")||"[]");acts=JSON.parse(ls.get("ab.c2")||"[]")}catch(e){}}
+  else{all=a.data.map(fromRow);acts=b.data;ls.set("ab.c1",JSON.stringify(all));ls.set("ab.c2",JSON.stringify(acts));head()}
+  render()}
+const sumry=x=>`${x.party} · ${fmt(x.amount)} (${x.type})`;
+async function log(action,x){await sb.from("activity_log").insert({action,entry_id:x.id,summary:sumry(x),by_name:name,at:Date.now()})}
+async function run(p){const {error}=await p;if(error)alert("Could not save: "+error.message)}
+
+/* render */
+function render(){home();entries();activity()}
+function home(){
+  let l=live();const m=mk(),lm=mk(new Date(new Date().getFullYear(),new Date().getMonth()-1,1));
+  if(per==="this")l=l.filter(x=>x.date.startsWith(m));if(per==="last")l=l.filter(x=>x.date.startsWith(lm));
+  const i=sum(l,"income","paid"),e=sum(l,"expense","paid"),n=i-e;
+  const cl=grp(l.filter(x=>x.type==="income"&&x.status==="paid"),"party"),ca=grp(l.filter(x=>x.type==="expense"&&x.status==="paid"),"cat");
+  $("v1").innerHTML=`<div class="chips">${[["all","All time"],["this","This month"],["last","Last month"]].map(([k,t])=>`<button data-p="${k}" class="${per===k?"on":""}">${t}</button>`).join("")}</div>
+  <div class="cd"><div class="k">Net profit</div><div class="big ${n>=0?"in":"out"}">${fmt(n)}</div></div>
+  <div class="g2"><div class="cd"><div class="k">Income</div><div class="v in">${fmt(i)}</div></div><div class="cd"><div class="k">Expenses</div><div class="v out">${fmt(e)}</div></div>
+  <div class="cd"><div class="k">To receive</div><div class="v pe">${fmt(sum(l,"income","unpaid"))}</div></div><div class="cd"><div class="k">To pay</div><div class="v pe">${fmt(sum(l,"expense","unpaid"))}</div></div></div>
+  <h3>Income by client</h3><div class="cd">${cl.length?cl.map(([k,v])=>`<div class="row"><span>${esc(k)}</span><b>${fmt(v)}</b></div>`).join(""):'<div class="sub">Nothing yet</div>'}</div>
+  <h3>Expenses by category</h3><div class="cd">${ca.length?ca.map(([k,v])=>`<div class="row"><span>${esc(k)}</span><b>${fmt(v)}</b></div>`).join(""):'<div class="sub">Nothing yet</div>'}</div>`}
+function entries(){
+  const l=live().filter(x=>(chip==="all"||(chip==="unpaid"?x.status==="unpaid":x.type===chip))&&(!q||(x.party+x.cat+x.desc).toLowerCase().includes(q))).sort((a,b)=>b.date.localeCompare(a.date)||b.created-a.created);
+  $("v2").innerHTML=`<input id="q" type="search" placeholder="Search client, category…" value="${esc(q)}" style="margin-bottom:10px">
+  <div class="chips">${[["all","All"],["income","Income"],["expense","Expenses"],["unpaid","Unpaid"]].map(([k,t])=>`<button data-c="${k}" class="${chip===k?"on":""}">${t}</button>`).join("")}</div>
+  ${l.length?l.map(x=>`<div class="cd it" data-id="${x.id}"><div><b>${esc(x.party)}</b><span class="tg ${x.status==="paid"?"in":"pe"}">${x.status}</span><div class="sub">${esc(x.cat)} · ${x.date}${x.by?" · "+esc(x.by):""}</div>${x.desc?`<div class="sub">${esc(x.desc)}</div>`:""}</div><div class="a ${x.type==="income"?"in":"out"}">${x.type==="income"?"+":"−"}${fmt(x.amount)}</div></div>`).join(""):`<div class="em">${all.length?"No entries match.":"No entries yet. Tap + to add one."}</div>`}`;
+  const s=$("q");s&&(s.oninput=e=>{q=e.target.value.toLowerCase();const p=e.target.selectionStart;entries();const n=$("q");n.focus();n.setSelectionRange(p,p)})}
+function activity(){
+  const A={added:"added",deleted:"deleted",restored:"restored","marked paid":"marked paid","marked unpaid":"marked unpaid"};
+  $("v3").innerHTML=`<div class="sub" style="margin:0 2px 10px">Every add, delete and change, with who did it.</div><div class="cd">${acts.length?acts.map(a=>{const dead=a.action==="deleted"&&all.find(x=>x.id===a.entry_id&&x.delAt);
+    return `<div class="lg"><b class="${a.action==="deleted"?"out":""}">${esc(a.by_name||"Someone")}</b> ${esc(A[a.action]||a.action)} <b>${esc(a.summary)}</b><div class="sub">${when(a.at)}</div>${dead?`<button class="s" data-r="${a.entry_id}" style="min-height:40px;padding:6px 12px;margin-top:6px;width:auto">Restore</button>`:""}</div>`}).join(""):'<div class="em">No activity yet.</div>'}</div>`}
+
+/* actions */
+function addSheet(){
+  let type="expense";status="paid";
+  const paint=()=>{$("tp").innerHTML=["income","expense"].map(t=>`<button data-ty="${t}" class="${type===t?"on":""}">${t==="income"?"Income":"Expense"}</button>`).join("");
+    $("ct").innerHTML=CATS[type].map(c=>`<option>${c}</option>`).join("");$("st").innerHTML=["paid","unpaid"].map(t=>`<button data-s="${t}" class="${status===t?"on":""}">${t==="paid"?"Paid":"Unpaid"}</button>`).join("")};
+  sheet(`<h2>New entry</h2><div class="seg" id="tp"></div><label>Amount (₹)</label><input id="am" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0">
+  <label>Client / Vendor</label><input id="pa" placeholder="e.g. Acme Pvt Ltd"><label>Category</label><select id="ct"></select><label>Date</label><input id="dt" type="date" value="${new Date().toISOString().slice(0,10)}">
+  <label>Status</label><div class="seg" id="st"></div><label>Note (optional)</label><input id="ds"><button id="sv">Save entry</button>`);
+  paint();
+  $("tp").onclick=e=>{if(e.target.dataset.ty){type=e.target.dataset.ty;paint()}};$("st").onclick=e=>{if(e.target.dataset.s){status=e.target.dataset.s;paint()}};
+  $("sv").onclick=async()=>{const amount=parseFloat($("am").value),party=$("pa").value.trim();if(!(amount>=0)||!party||!$("dt").value)return alert("Enter amount, client and date.");
+    $("sv").disabled=true;const x={id:"t"+Date.now().toString(36)+Math.random().toString(36).slice(2,6),type,date:$("dt").value,party,cat:$("ct").value,desc:$("ds").value.trim(),amount,status,by:name};
+    await run(sb.from("transactions").insert({id:x.id,type:x.type,date:x.date,party:x.party,cat:x.cat,descr:x.desc,amount:x.amount,status:x.status,by_name:name,created:Date.now()}));
+    await log("added",x);closeSheet();refresh()}}
+function entrySheet(x){
+  sheet(`<h2>${esc(x.party)}</h2><div class="sub">${fmt(x.amount)} · ${esc(x.cat)} · ${x.date}</div>
+  <button id="tg">Mark as ${x.status==="paid"?"unpaid":"paid"}</button><button class="d" id="dl">Delete…</button><button class="s" id="cx">Cancel</button>`);
+  $("cx").onclick=closeSheet;
+  $("tg").onclick=async()=>{if(!await needName())return;const ns=x.status==="paid"?"unpaid":"paid";await run(sb.from("transactions").update({status:ns}).eq("id",x.id));await log("marked "+ns,x);closeSheet();refresh()};
+  $("dl").onclick=async()=>{if(!await needName())return;
+    sheet(`<h2>Delete this entry?</h2><div class="sub">${esc(sumry(x))}</div><p>It will be recorded as deleted by <b>${esc(name)}</b>. You can restore it from the Activity tab.</p><button class="d" id="dy">Yes, delete</button><button class="s" id="dn">Keep it</button>`);
+    $("dn").onclick=closeSheet;
+    $("dy").onclick=async()=>{await run(sb.from("transactions").update({deleted_at:Date.now(),deleted_by:name}).eq("id",x.id));await log("deleted",x);closeSheet();refresh()}}}
+function menuSheet(){
+  sheet(`<h2>More</h2><button class="s" id="m1">Change my name (${esc(name||"not set")})</button><button class="s" id="m2">Export CSV</button><button class="s" id="m3">Save backup file</button><button class="s" id="m4">Import backup file</button><input type="file" id="fl" accept=".json" hidden>`);
+  $("m1").onclick=askName;
+  const dl=(n,t,ty)=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:ty}));a.download=n;document.body.appendChild(a);a.click();a.remove()};
+  $("m2").onclick=()=>{const c=s=>'"'+String(s??"").replace(/"/g,'""')+'"';dl("agency-books.csv",["Date,Type,Client/Vendor,Category,Note,Amount,Status,Added by"].concat(live().map(x=>[x.date,x.type,c(x.party),c(x.cat),c(x.desc),x.amount,x.status,c(x.by)].join(","))).join("\n"),"text/csv")};
+  $("m3").onclick=()=>dl("agency-books-backup-"+new Date().toISOString().slice(0,10)+".json",JSON.stringify(live()),"application/json");
+  $("m4").onclick=()=>$("fl").click();
+  $("fl").onchange=async e=>{if(!await needName())return;try{const a=JSON.parse(await e.target.files[0].text());
+    const rows=a.filter(x=>x&&x.id&&x.date&&x.amount>=0).map(x=>({id:x.id,type:x.type,date:x.date,party:x.party,cat:x.cat,descr:x.desc||"",amount:x.amount,status:x.status,by_name:x.by||"",created:x.created||Date.now()}));
+    await run(sb.from("transactions").upsert(rows,{onConflict:"id",ignoreDuplicates:true}));await sb.from("activity_log").insert({action:"imported",entry_id:"-",summary:rows.length+" entries from a backup file",by_name:name,at:Date.now()});closeSheet();refresh()}catch(err){alert("Not a valid backup file.")}}}
+
+/* wiring */
+function show(t){tab=t;[1,2,3].forEach(i=>$("v"+i).hidden=i!==t);document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",+b.dataset.t===t));scrollTo(0,0)}
+document.querySelector("nav").onclick=e=>{const b=e.target.closest("button");b&&show(+b.dataset.t)};
+$("fab").onclick=async()=>{if(await needName())addSheet()};$("mb").onclick=menuSheet;
+$("v1").onclick=e=>{const p=e.target.dataset.p;if(p){per=p;home()}};
+$("v2").onclick=e=>{const c=e.target.dataset.c;if(c){chip=c;entries();return}const it=e.target.closest(".it");if(it)entrySheet(all.find(x=>x.id===it.dataset.id))};
+$("v3").onclick=async e=>{const r=e.target.dataset.r;if(!r||!await needName())return;const x=all.find(y=>y.id===r);await run(sb.from("transactions").update({deleted_at:null,deleted_by:null}).eq("id",r));await log("restored",x);refresh()};
+head();render();
+if(!window.supabase){$("me").textContent="Could not load sync library. Check internet."}
+else{sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);refresh();
+  sb.channel("live").on("postgres_changes",{event:"*",schema:"public",table:"transactions"},refresh).on("postgres_changes",{event:"*",schema:"public",table:"activity_log"},refresh).subscribe();
+  document.addEventListener("visibilitychange",()=>{if(!document.hidden)refresh()});
+  if(!name)setTimeout(askName,500)}
+if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+</script></body></html>
