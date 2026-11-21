@@ -1,0 +1,2 @@
+export const SUPABASE_URL = "https://rjlewrlcgxnscarexaos.supabase.co";
+export const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqbGV3cmxjZ3huc2NhcmV4YW9zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTUyNTUwMDIsImV4cCI6MjExMDgzMTAwMn0.eWXAb78wcL35odjSE4ub3rn6ge-6bZZElUi9PM-6FZ0";
